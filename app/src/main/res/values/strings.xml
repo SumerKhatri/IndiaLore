@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">IndiaLore</string>
+
+    <string name="first_slide">Hustle Free Experience</string>
+    <string name="second_slide">Checkout Products From Anywhere Anytime</string>
+    <string name="third_slide">Your One Stop Destination For Traditional Products</string>
+
+    <string name="description"></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

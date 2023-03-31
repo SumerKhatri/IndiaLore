@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "452978333109",
+    "project_id": "indialore-73305",
+    "storage_bucket": "indialore-73305.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452978333109:android:8f610e3aba23d76a22f5fc",
+        "android_client_info": {
+          "package_name": "com.example.indialore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "452978333109-f4oa95lnl2b3difbu1saa4igi5m5kqef.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByWGR4XweljysEXTAQNeQNCUEA8GOF07w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "452978333109-f4oa95lnl2b3difbu1saa4igi5m5kqef.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
