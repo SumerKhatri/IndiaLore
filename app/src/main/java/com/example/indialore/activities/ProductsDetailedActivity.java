@@ -3,6 +3,7 @@ package com.example.indialore.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -15,7 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ProductsDetailedActivity extends AppCompatActivity {
     ImageView img,inc,dec;
-    TextView name,price,description;
+    TextView name,price,description,quantity;
     RatingBar rating;
     Button addToCart,buyBtn;
     FirebaseFirestore firebaseFirestore;
@@ -31,6 +32,7 @@ public class ProductsDetailedActivity extends AppCompatActivity {
         price=findViewById(R.id.product_price);
         description=findViewById(R.id.product_description);
         rating=findViewById(R.id.ratingBar);
+        quantity=findViewById(R.id.product_quantity);
 
         firebaseFirestore=FirebaseFirestore.getInstance();
 
@@ -43,7 +45,25 @@ public class ProductsDetailedActivity extends AppCompatActivity {
             name.setText(productModel.getName());
             price.setText(""+productModel.getPrice());
             description.setText(productModel.getDescription());
-
         }
+
+        inc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int q=Integer.parseInt(String.valueOf(quantity.getText()));
+                q++;
+                quantity.setText(""+q);
+            }
+        });
+        dec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int q=Integer.parseInt(String.valueOf(quantity.getText()));
+                q--;
+                if(q<1)
+                    q=1;
+                quantity.setText(""+q);
+            }
+        });
     }
 }

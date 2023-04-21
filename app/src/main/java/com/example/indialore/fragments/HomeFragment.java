@@ -1,6 +1,7 @@
 package com.example.indialore.fragments;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,15 +9,20 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.interfaces.ItemClickListener;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.indialore.R;
+import com.example.indialore.activities.ProductsDetailedActivity;
+import com.example.indialore.activities.ShowAllActivity;
 import com.example.indialore.adapters.CategoryAdapter;
 import com.example.indialore.adapters.ProductAdapter;
 import com.example.indialore.models.CategoryModel;
@@ -33,6 +39,7 @@ import java.util.List;
 public class HomeFragment extends Fragment {
     LinearLayout linearLayout;
     RecyclerView catRecyclerView,productRecyclerView;
+    TextView catShowAll,productShowAll;
     CategoryAdapter categoryAdapter;
     ProductAdapter productAdapter;
     List<CategoryModel>categoryModelList;
@@ -118,7 +125,29 @@ public class HomeFragment extends Fragment {
         slideModels.add(new SlideModel(R.drawable.banner2,"Quality Products", ScaleTypes.CENTER_CROP));
         slideModels.add(new SlideModel(R.drawable.banner3,"Affordable Prices", ScaleTypes.CENTER_CROP));
         imageSlider.setImageList(slideModels);
+        imageSlider.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onItemSelected(int i) {
+                startActivity(new Intent(getContext(), ShowAllActivity.class));
+            }
+        });
 
+
+        catShowAll=root.findViewById(R.id.category_see_all);
+        productShowAll=root.findViewById(R.id.newProducts_see_all);
+        catShowAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), ShowAllActivity.class).putExtra("detailed",CategoryModel.class));
+            }
+        });
+        productShowAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(),ShowAllActivity.class));
+            }
+        });
         return root;
     }
+
 }

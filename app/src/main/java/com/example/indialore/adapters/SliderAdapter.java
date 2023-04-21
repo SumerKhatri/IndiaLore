@@ -1,6 +1,7 @@
 package com.example.indialore.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.indialore.R;
+import com.example.indialore.activities.ShowAllActivity;
 
 public class SliderAdapter extends PagerAdapter {
     Context context;
@@ -37,14 +39,12 @@ public class SliderAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         layoutInflater=(LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         View view=layoutInflater.inflate(R.layout.sliding_layout,container,false);
-
         ImageView imageView=view.findViewById(R.id.slider_img);
         TextView heading=view.findViewById(R.id.heading);
         TextView description=view.findViewById(R.id.description);
         imageView.setImageResource(imagesArray[position]);
         heading.setText(headingArray[position]);
         description.setText(descriptionArray[position]);
-
         container.addView(view);
         return view;
     }
