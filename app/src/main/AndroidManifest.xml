@@ -15,6 +15,9 @@
         android:theme="@style/Theme.IndiaLore"
         tools:targetApi="31">
         <activity
+            android:name=".activities.CategoryDetailedActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.ShowAllActivity"
             android:exported="false" />
         <activity
