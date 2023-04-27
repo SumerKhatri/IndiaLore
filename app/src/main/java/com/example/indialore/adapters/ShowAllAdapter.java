@@ -1,6 +1,7 @@
 package com.example.indialore.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.indialore.R;
+import com.example.indialore.activities.CategoryDetailedActivity;
 import com.example.indialore.models.ShowAllModel;
 
 import java.util.ArrayList;
@@ -36,6 +38,7 @@ public class ShowAllAdapter extends RecyclerView.Adapter<ShowAllAdapter.ViewHold
     public void onBindViewHolder(@NonNull ShowAllAdapter.ViewHolder holder, int position) {
         Glide.with(context).load(list.get(position).getImg_url()).into(holder.img);
         holder.name.setText(list.get(position).getName());
+
     }
 
     @Override

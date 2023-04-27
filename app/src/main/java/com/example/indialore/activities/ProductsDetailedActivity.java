@@ -3,6 +3,7 @@ package com.example.indialore.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -31,6 +32,7 @@ public class ProductsDetailedActivity extends AppCompatActivity {
         name=findViewById(R.id.product_name);
         price=findViewById(R.id.product_price);
         description=findViewById(R.id.product_description);
+        description.setMovementMethod(new ScrollingMovementMethod());
         rating=findViewById(R.id.ratingBar);
         quantity=findViewById(R.id.product_quantity);
 

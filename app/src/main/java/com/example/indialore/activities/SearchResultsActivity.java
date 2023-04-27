@@ -1,20 +1,17 @@
 package com.example.indialore.activities;
 
-
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.SearchManager;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.example.indialore.R;
 import com.example.indialore.adapters.CategoryDetailedAdapter;
-import com.example.indialore.adapters.ProductAdapter;
-import com.example.indialore.models.CategoryModel;
 import com.example.indialore.models.ProductModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,26 +22,21 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryDetailedActivity extends AppCompatActivity {
-    TextView cat_name;
-    CategoryModel categoryModel;
+public class SearchResultsActivity extends AppCompatActivity {
     FirebaseFirestore db;
-    List<ProductModel> productModelList;
-    CategoryDetailedAdapter categoryDetailedAdapter;
     RecyclerView recyclerView;
+    List<ProductModel>productModelList;
+    CategoryDetailedAdapter categoryDetailedAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_category_detailed);
-        Object object=getIntent().getSerializableExtra("detailed");
-        if(object instanceof CategoryModel){
-            categoryModel=(CategoryModel) object;
-        }
-        cat_name=findViewById(R.id.cat_name);
-        cat_name.setText(categoryModel.getName());
+        setContentView(R.layout.activity_search_results);
+        String query=getIntent().getStringExtra("searchQuery");
+        TextView tv=findViewById(R.id.textView3);
+        tv.setText(query);
 
         db=FirebaseFirestore.getInstance();
-        recyclerView=findViewById(R.id.cat_detailed_recView);
+        recyclerView=findViewById(R.id.search_recView);
         db.collection("Products")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -55,8 +47,11 @@ public class CategoryDetailedActivity extends AppCompatActivity {
 
                                 try {
                                     ProductModel productModel=document.toObject(ProductModel.class);
-                                    if (productModel.getState().toLowerCase().equals(categoryModel.getName().toLowerCase()))
-                                        productModelList.add(productModel);
+//                                    if (productModel.getState().toLowerCase().equals(categoryModel.getName().toLowerCase()))
+//                                        productModelList.add(productModel);
+                                     if(productModel.getName().toLowerCase().contains(query.toLowerCase())){
+                                         productModelList.add(productModel);
+                                     }
                                 }catch (Exception e){
 
                                 }
@@ -75,4 +70,5 @@ public class CategoryDetailedActivity extends AppCompatActivity {
         recyclerView.setAdapter(categoryDetailedAdapter);
 
     }
+
 }

@@ -101,9 +101,13 @@ public class HomeFragment extends Fragment {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                ProductModel productModel=document.toObject(ProductModel.class);
-                                productModelList.add(productModel);
-                                productAdapter.notifyDataSetChanged();
+                                try {
+                                    ProductModel productModel = document.toObject(ProductModel.class);
+                                    productModelList.add(productModel);
+                                    productAdapter.notifyDataSetChanged();
+                                }catch (Exception e){
+
+                                }
                             }
                         } else {
 
